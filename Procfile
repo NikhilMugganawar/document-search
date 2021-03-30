@@ -1,1 +1,1 @@
-web: python3.9.2 app.py
+web: python-3.9.2 app.py
