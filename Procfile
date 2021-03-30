@@ -1,1 +1,1 @@
-web: python-3.9.2 app.py
+web: uwsgi uwsgi.ini
