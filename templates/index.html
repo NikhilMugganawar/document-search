@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- Bootstrap CSS --> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-center">
+              <h1>Document Search</h1>
+            </div>
+          </div>
+        <div class="alert alert-primary" role="alert">
+            Currently we support only .pdf files , we are working on other files types, stay tuned for the updates!
+          </div>
+          <form method ="POST" action ="/processdocuments" enctype ="multipart/form-data">
+        <!-- <div class="container" style="padding:10px">
+            <label class="form-label" for="customFile">Select PDF Files</label>
+            <input type="file" name ="files[]" class="filecoose" id="customFile" value="" autocomplete="off" required multiple="true">
+        </div> -->
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Enter Folder Location</span>
+          </div>
+          <input type="text" name="textboxpath" class="form-control" aria-label="Enter Folder Location" aria-describedby="inputGroup-sizing-default">
+        </div>
+    <hr><br><br><br>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Enter Your Query Here</span>
+            </div>
+            <input type="text" name="querybox" class="form-control" aria-label="Enter Your Query Here" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <br><br><br>
+          <div class="text-center">
+          <input type="submit" name ="" class="btn btn-primary" value ="Click To Get Search Results">
+          </form>
+        </div> 
+    </body>
+</html>    

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- Bootstrap CSS --> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <br>
+        {% for key, value in search_results.items() %}
+        <br>
+        {{ key }} : {{ value }}
+        <br>
+        <br>
+        <hr>
+        <br>
+        {% endfor %}
+        <br>
+        <form method ="POST" action ="/home" enctype ="multipart/form-data">
+            <div class="text-center">
+                <input type="submit" name ="" class="btn btn-primary" value ="Go Back Home">
+            </div>    
+        </form> 
+    </body>
+</html>    
