@@ -7,7 +7,7 @@ import glob
 import fitz
 import pandas as pd
 import numpy as np
-import textract
+#import textract
 import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 app = Flask(__name__)
