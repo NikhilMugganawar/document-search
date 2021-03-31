@@ -57,13 +57,14 @@ def processdocuments():
             ext=file.split('.')[-1]
             if ext in conventions:
                 number_of_files = number_of_files + 1
-                with fitz.open(file) as doc:
-                    text = "";
-                    res = []
-                    for page in doc:
-                        text += page.getText().replace("\n", "").replace("\\","")
-                        res.append(text)
-                        documents.append(' '.join(res))
+                doc = fitz.open(file)
+                #with fitz.open(file) as doc:
+                text = "";
+                res = []
+                for page in doc:
+                    text += page.getText().replace("\n", "").replace("\\","")
+                    res.append(text)
+                    documents.append(' '.join(res))
         # mypath = request.form['textboxpath']
         # mypath = mypath.replace('\\','//')
         # documents = []
