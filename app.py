@@ -7,6 +7,8 @@ import glob
 import fitz
 import pandas as pd
 import numpy as np
+import textract
+import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 app = Flask(__name__)
 # Get current path
@@ -36,23 +38,45 @@ def home():
 @app.route("/processdocuments",methods=['POST'])
 def processdocuments():
     if request.method == 'POST':
-        mypath = request.form['textboxpath']
-        mypath = mypath.replace('\\','//')
-        # text_box_value = "**/*.pdf"
-        # files = glob.glob('/home/geeks/Desktop/gfg/**/*.pdf', recursive = True)
+        file_names=[]
+        curr_path=os.getcwd() 
+        files_in_dir=os.listdir()
+        for file in file_names:
+            if file.split('.')[-1] in ['pdf']:
+                    os.remove(file)
+        uploaded_files=request.files.getlist("files[]") 
+        for file in uploaded_files:  
+            if file.filename.split('.')[-1] in ['pdf']:
+                file.save(file.filename)
+        files_in_dir=os.listdir()
+        curr_path=os.getcwd()
+        conventions=['pdf']
         documents = []
         number_of_files = 1
-        #for file in glob.glob(mypath + "/*.pdf"):
-        for file in glob.iglob(mypath + "/*.pdf"):
-            number_of_files = number_of_files + 1
-            with fitz.open(file) as doc:
-                text = "";
-                #documents =[]
-                res = []
-                for page in doc:
-                    text += page.getText().replace("\n", "").replace("\\","")
-                    res.append(text)
-                    documents.append(' '.join(res))
+        for file in files_in_dir:
+            ext=file.split('.')[-1]
+            if ext in conventions:
+                number_of_files = number_of_files + 1
+                with fitz.open(file) as doc:
+                    text = "";
+                    res = []
+                    for page in doc:
+                        text += page.getText().replace("\n", "").replace("\\","")
+                        res.append(text)
+                        documents.append(' '.join(res))
+        # mypath = request.form['textboxpath']
+        # mypath = mypath.replace('\\','//')
+        # documents = []
+        # number_of_files = 1
+        # for file in glob.iglob(mypath + "/*.pdf"):
+        #     number_of_files = number_of_files + 1
+        #     with fitz.open(file) as doc:
+        #         text = "";
+        #         res = []
+        #         for page in doc:
+        #             text += page.getText().replace("\n", "").replace("\\","")
+        #             res.append(text)
+        #             documents.append(' '.join(res))
         vectorizer = TfidfVectorizer()
         # It fits the data and transform it as a vector
         X = vectorizer.fit_transform(documents)
