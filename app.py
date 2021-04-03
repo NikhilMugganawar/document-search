@@ -42,8 +42,8 @@ def allowed_file(filename):
 
 @app.errorhandler(413)
 def too_large(e):
-    flash('File Uploaded is too large')
-    return render_template('index.html')
+    error = 'File Uploaded is too large'
+    return render_template('index.html',error=error)
 
 @app.route("/")
 @app.route("/home",methods=['POST'])
